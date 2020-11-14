@@ -1,2 +1,2 @@
-# blog
+# MEM blog
 blog django project
