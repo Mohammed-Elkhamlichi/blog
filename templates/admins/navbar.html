@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a style="font-size:25px; font-weight: bold;" class="navbar-brand"  href="{% url 'home' %}">MEM Blog</a>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-light " style="font-size:20px; font-weight: italic;" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:users' %#}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:logout' %#}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:register' %#}">Register</a>
+          </li>
+        </ul>
+        <div class="row">
+          <form class="d-flex ">
+            <input class="form-control mr-2 col-sm-8" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
