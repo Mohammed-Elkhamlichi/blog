@@ -1,7 +1,8 @@
 from django.shortcuts import (
     render,
     redirect,
-    HttpResponseRedirect
+    HttpResponseRedirect,
+    get_object_or_404,
 )
 from django.http import HttpResponse
 from django.template import loader
@@ -14,17 +15,32 @@ from django.contrib.auth import (
 )
 from .forms import (
     LoginUserForm,
-    RegisterUserForm
+    RegisterUserForm,
+    ProfileForm
 )
+from .models import Profile
 # Create your views here.
 
 # User Profile View:
-def profile(request, username):
+def profile(request):
 
     # QuerSet:
-    # user = User
+    user_info = Profile.objects.get(user=request.user)
+    # Form Validations:
+    form = ProfileForm(instance=user_info)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=user_info)
+        if form.is_valid():
+            insert = form.save(commit=False)
+            insert.save()
+            return HttpResponseRedirect('.')
+        else:
+            return HttpResponseRedirect('.')
     # Context
-    context = {}
+    context = {
+        'form':form,
+        'user_info':user_info,
+    }
     # Template:
     return render(request, 'accounts/profile.html', context)
 
@@ -62,7 +78,7 @@ def login_user(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('accounts:profile')
             else:
                 messages.warning(request, 'please enter a valid informatins')
         # template:

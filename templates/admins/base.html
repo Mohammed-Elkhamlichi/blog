@@ -22,12 +22,24 @@
      
         {% endblock navbar %}   
     <!-- end nav bar template -->
-
+    
+    <div class="row col-md-12">
     <!-- start content -->
-    {% block content %}
+        <div class="container bg-info col-md-7 border rounded mt-3">
+            {% block content %}
 
-    {% endblock content %}
+            {% endblock content %}
+        </div>
     <!-- end content -->
+
+    <!-- start side bar -->
+        <div class="col-md-4 bg-info border rounded mt-3">
+            {% block sidebar %}
+            {% include "admins/sidebar.html" %}
+            {% endblock sidebar %}
+        </div>
+    <!-- end side bar -->
+    </div>
 
     <!-- start footer template -->
     {% block footer %}

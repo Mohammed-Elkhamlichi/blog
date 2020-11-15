@@ -2,7 +2,27 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 # my Forms:
+# User Profile Form:
+class ProfileForm(forms.ModelForm):
+    image = forms.ImageField(
+        # label="",
+        widget=forms.ClearableFileInput(
+            attrs={
+                "class":"col-md-12 p-2 border mt-2 rounded bg-warning",
+                "placeholder":"Image Profile",
+            }
+        )
+    )
+    
+    class Meta:
+        model = Profile
+        # fields = '__all__'
+        fields = list((
+            'email','username','first_name','last_name','phone_number','image','type','country','bio',
+        ))
+
 
 # User Login Form:
 class LoginUserForm(forms.ModelForm):
