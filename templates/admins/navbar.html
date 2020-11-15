@@ -13,17 +13,20 @@
             <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="">Articles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:users' %#}">Profile</a>
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:profile' request.user.username %}">Profile</a>
           </li>
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:logout' %#}">Logout</a>
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:logout' %}">Logout</a>
           </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:login' %}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'users:register' %#}">Register</a>
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{#% url 'accounts:register' %#}">Register</a>
           </li>
+          {% endif %}
         </ul>
         <div class="row">
           <form class="d-flex ">

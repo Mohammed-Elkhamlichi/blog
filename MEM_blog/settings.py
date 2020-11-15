@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# login reduired url
+LOGIN_URL = "accounts:login"
 
 # Application definition
 

@@ -12,11 +12,35 @@
 </head>
 <body>
     <!-- start user login form -->
-    <form action="" method="POST" class="bg-info w-50 m-auto">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-success">Login</button>
-    </form>
+    <div class="mt-5">
+        <form action="" method="POST" class="bg-info col-md-4 m-auto border rounded">
+            <h1 class="bg-success text-center p-2 border">Login User</h1>
+            
+            <!-- start messages loop -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="bg-danger border rounded text-center p-2 font-weight-bold">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!-- end messages loop -->
+
+            {% csrf_token %}
+            {{form.as_p}}
+            <center>
+                <button class="btn btn-success col-md-4 m-2 border rounded">
+                    Login
+                </button>
+            </center>
+            <h5 class="mt-4 text-light">
+                I don't have an account
+                <a class="btn btn-info border rounded" href="{% url 'accounts:register' %}">
+                    Register Now
+                </a>
+            </h5>            
+        </form>
+    </div>
     <!-- end user logn form -->
 
 
