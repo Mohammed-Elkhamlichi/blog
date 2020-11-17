@@ -1,23 +1,15 @@
 {% load static %}
-<h3 class="bg-danger text-center p-2 rounded border mt-2">Latest publications</h3>
-<div class="row w-100 p-2 border bg-success m-auto">
-    <img class="col-md-4"  src="{% static 'img/hacker-1.jpg' %}" alt="">
-    <a class="text-light col-md-8"> 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-        Nobis laboriosam molestias, expedita porro debitis harum?
-    </a>
-</div>
-<div class="row w-100 p-2 border bg-success m-auto">
-    <img class="col-md-4"  src="{% static 'img/hacker-1.jpg' %}" alt="">
-    <a class="text-light col-md-8"> 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-        Nobis laboriosam molestias, expedita porro debitis harum?
-    </a>
-</div>
-<div class="row w-100 p-2 border bg-success m-auto">
-    <img class="col-md-4"  src="{% static 'img/hacker-1.jpg' %}" alt="">
-    <a class="text-light col-md-8"> 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-        Nobis laboriosam molestias, expedita porro debitis harum?
-    </a>
-</div>
+{% load crispy_forms_tags %}
+<h3 class="bg-secondary text-center p-2  border mt-2">Latest publications</h3>
+    {% for article in latest_articles %}
+        <div class="row p-0  border bg-success m-auto">
+            <img class="bg-light img-fluid"  width="180px" src="{{article.image.url}}" alt="">
+            <div class="col-md-6 p-2">
+                <a class="text-light container-fluid font-weight-bold w-100" href="{% url 'articles:detail' article.id %}">{{article.title}}</a>
+                <p class="text-dark w-100"> 
+                    {{article.content|striptags|slice:":50"}}
+                    <b>...</b>
+                </p>
+            </div>
+        </div>
+    {% endfor %}

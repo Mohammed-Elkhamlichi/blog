@@ -1,5 +1,5 @@
 {% extends "admins/base.html" %}
-
+{% load static %}
 {% block navbar %}
     <!-- start include the nav bar template -->
     {% include "admins/navbar.html" %}
@@ -7,9 +7,13 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="mt-5 col-sm-10">
-    <h1 class="text-center font-weight-italic text-light p-5 bg-success m-auto border rounded col-sm-6">
-        Hello World In My Django Blog Developed By Mohammed-Elkhamlichi(MEM)
-    </h1>
-</div>
+    {% for article in articles  %}
+
+    {% endfor %}
 {% endblock %}
+
+{% block sidebar %}
+    <!-- start include the side bar tamplate -->
+    {% include "admins/sidebar.html" %}
+    <!-- end include the side bar tamplate -->
+{% endblock sidebar %}

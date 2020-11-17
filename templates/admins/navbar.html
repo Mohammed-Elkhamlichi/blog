@@ -10,10 +10,13 @@
             <a class="nav-link text-light " style="font-size:20px; font-weight: italic;" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="">Articles</a>
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'articles:articles' %}">Articles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:profile'%}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" style="font-size:20px; font-weight: italic;" href="{% url 'accounts:contact_us'%}">Contact US</a>
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
@@ -29,10 +32,13 @@
           {% endif %}
         </ul>
         <div class="row">
-          <form class="d-flex ">
-            <input class="form-control mr-2 col-sm-8" type="search" placeholder="Search" aria-label="Search">
+          <!-- start the search template -->
+          <form class="d-flex" method="POST" action="{% url 'articles:search' %}">
+            {% csrf_token %}
+            <input class="form-control mr-2 col-sm-8" type="search" placeholder="Search" name='title' aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
           </form>
+          <!-- end the search template -->
         </div>
       </div>
     </div>

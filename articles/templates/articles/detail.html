@@ -1,0 +1,28 @@
+{% extends "admins/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block navbar %}
+    <!-- start include th nav bar template -->
+    {% include "admins/navbar.html" %}
+    <!-- start include th nav bar template -->
+{% endblock navbar %}
+
+{% block content %}
+    {% if article.image %}
+        <img class="img-fluid mt-3" src="{{ article.image.url}}" alt="">
+    {% endif %}
+    <p>
+        {{article.content|safe}}
+    </p>
+{% endblock content %}
+
+{% block sidebar %}
+    <!-- start include the side bar tamplate -->
+    {% include "admins/sidebar.html" %}
+    <!-- end include the side bar tamplate -->
+{% endblock sidebar %}
+
+{% block footer %}
+  
+{% endblock footer %}

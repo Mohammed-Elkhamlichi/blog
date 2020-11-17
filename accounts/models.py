@@ -6,6 +6,19 @@ from django.db.models.signals import post_save
 from django.utils.text import slugify
 # Create your models here.
 
+# Send Message Model:
+class SendMessage(models.Model):
+    full_name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=255)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        ordering  = ['-created']
+
 # User Profile Model:
 class Profile(models.Model):
     ## user type:
@@ -32,7 +45,7 @@ class Profile(models.Model):
         return str(self.user.username)
 
     # def __unicode__(self):
-    #     return str(self.first_name)
+    #     return u"{}".format(self.first_name)
 
     ## save informations:
     def save(self, *args, **kwargs):

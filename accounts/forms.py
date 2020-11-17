@@ -2,8 +2,45 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import (
+    Profile,
+    SendMessage,
+)
 # my Forms:
+
+# send Message Form:
+class SendMessageForm(forms.ModelForm):
+    full_name = forms.CharField(
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"Full Name"
+            }
+        )
+    )
+    email = forms.CharField(
+        label="",
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder":"Email"
+            }
+        )
+    )
+    content = forms.CharField(
+        label="",
+        widget=forms.Textarea(
+            attrs={
+                "placeholder":"Message"
+            }
+        )
+    )
+    class Meta:
+        model = SendMessage
+        fields = list((
+
+            'full_name','email','content',
+        ))
+
 # User Profile Form:
 class ProfileForm(forms.ModelForm):
     image = forms.ImageField(

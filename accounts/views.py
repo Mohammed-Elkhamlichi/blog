@@ -18,28 +18,48 @@ from .forms import (
     RegisterUserForm,
     ProfileForm
 )
+from accounts.forms import SendMessageForm
 from .models import Profile
+from articles.models import Article
 # Create your views here.
+latest_articles = Article.objects.all()[0:3]
+# Contact Us View:
+def contact_us(request):
+    # send message Form Validations:
+    send_message_form=SendMessageForm()
+    if request.method == "POST":
+        send_message_form = SendMessageForm(request.POST)
+        if send_message_form.is_valid():
+            send_message_form.save()
+            return redirect('articles:articles')
+    # Context:
+    context = {
+        'send_message_form':send_message_form,
+        'latest_articles':latest_articles,
+    }
+    # Template:
+    return render(request, 'accounts/contact.html', context)
 
 # User Profile View:
 def profile(request):
-
     # QuerSet:
     user_info = Profile.objects.get(user=request.user)
-    # Form Validations:
-    form = ProfileForm(instance=user_info)
+    # Profile Form Validations:
+    profile_form = ProfileForm(instance=user_info)
     if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES, instance=user_info)
-        if form.is_valid():
-            insert = form.save(commit=False)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=user_info)
+        if profile_form.is_valid():
+            insert = profile_form.save(commit=False)
             insert.save()
             return HttpResponseRedirect('.')
         else:
             return HttpResponseRedirect('.')
+    # Profile Form Validations:
     # Context
     context = {
-        'form':form,
+        'profile_form':profile_form,
         'user_info':user_info,
+        'latest_articles':latest_articles,
     }
     # Template:
     return render(request, 'accounts/profile.html', context)
@@ -47,18 +67,18 @@ def profile(request):
 # User register View:
 def register_user(request):
     if not request.user.is_authenticated:
-        # form validations:
-        form = RegisterUserForm()
+        # User Register form validations:
+        user_register_form = RegisterUserForm()
         if request.method == "POST":
-            form = RegisterUserForm(request.POST or None)
-            if form.is_valid():
-                form.save()
+            user_register_form = RegisterUserForm(request.POST or None)
+            if user_register_form.is_valid():
+                user_register_form.save()
                 return redirect('accounts:login')
             else:
-                form = RegisterUserForm(request.POST or None)
+                user_register_form = RegisterUserForm(request.POST or None)
                 
         context = {
-            "form":form,
+            "user_register_form":user_register_form,
         }
         # templates:
         return render(request, 'accounts/register.html', context)
@@ -69,10 +89,10 @@ def register_user(request):
 # user login View:
 def login_user(request):
     if not request.user.is_authenticated:
-        # form validations:
-        form = LoginUserForm()
+        # User Login Form validations:
+        user_login_form = LoginUserForm()
         if request.method == "POST":
-            form = LoginUserForm(request.POST or None)
+            user_login_form = LoginUserForm(request.POST or None)
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
@@ -81,10 +101,11 @@ def login_user(request):
                 return redirect('accounts:profile')
             else:
                 messages.warning(request, 'please enter a valid informatins')
-        # template:
+        # Template:
         template = loader.get_template('accounts/login.html')
+        # Context:
         context = {
-            "form":form,
+            "user_login_form":user_login_form,
         }
         return HttpResponse(template.render(context, request))
         # or

@@ -5,6 +5,7 @@ from .views import (
     logout_user,
     register_user,
     profile,
+    contact_us,
 )
 
 # my App name:
@@ -16,4 +17,5 @@ urlpatterns = [
     path('logout/', logout_user, name="logout"),
     path('register/', register_user, name="register"),
     path('profile/', profile, name="profile"),
+    path('contact/', contact_us, name='contact_us')
 ]

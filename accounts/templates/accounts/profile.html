@@ -1,9 +1,13 @@
 {% extends "admins/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+
 {% block navbar %}
+    <!-- start include the nav bar template -->
     {% include 'admins/navbar.html' %}
+    <!-- start include the nav bar template -->
 {% endblock navbar %}
+
 {% block content %}
     <form action="" method="POST" class="mb-3" enctype="multipart/form-data">
         <div class="text-center">
@@ -16,31 +20,31 @@
             <!-- start profile form fields -->
                 <div class="row">
                     <div class="col-md-6">
-                        {{form.username|as_crispy_field}}
+                        {{profile_form.username|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.email|as_crispy_field}}
+                        {{profile_form.email|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.first_name|as_crispy_field}}
+                        {{profile_form.first_name|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.last_name|as_crispy_field}}
+                        {{profile_form.last_name|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.country|as_crispy_field}}
+                        {{profile_form.country|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.type|as_crispy_field}}
+                        {{profile_form.type|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.phone_number|as_crispy_field}}
+                        {{profile_form.phone_number|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.image|as_crispy_field}}
+                        {{profile_form.image|as_crispy_field}}
                     </div>
                     <div class="col-md-6">
-                        {{form.bio|as_crispy_field}}
+                        {{profile_form.bio|as_crispy_field}}
                     </div>
                 </div>
             <!-- end profile form fields -->
@@ -49,5 +53,10 @@
             </div>
         </div>
     </form>
-
 {% endblock content %}
+
+{% block sidebar %}
+    <!-- start include the side bar tamplate -->
+    {% include "admins/sidebar.html" %}
+    <!-- end include the side bar tamplate -->
+{% endblock sidebar %}

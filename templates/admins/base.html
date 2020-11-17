@@ -22,10 +22,10 @@
      
         {% endblock navbar %}   
     <!-- end nav bar template -->
-    
+
     <div class="row col-md-12">
     <!-- start content -->
-        <div class="container bg-info col-md-7 border rounded mt-3">
+        <div class="container bg-info col-md-7 border mt-3 mb-3">
             {% block content %}
 
             {% endblock content %}
@@ -33,9 +33,9 @@
     <!-- end content -->
 
     <!-- start side bar -->
-        <div class="col-md-4 bg-info border rounded mt-3">
+        <div class="col-md-4 bg-info border  mt-3 mb-3">
             {% block sidebar %}
-            {% include "admins/sidebar.html" %}
+            
             {% endblock sidebar %}
         </div>
     <!-- end side bar -->

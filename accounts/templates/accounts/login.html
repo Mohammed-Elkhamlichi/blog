@@ -10,7 +10,7 @@
 
     <title>MEM Blog</title>
 </head>
-<body>
+<body class="bg-dark">
     <!-- start user login form -->
     <div class="mt-5">
         <form action="" method="POST" class="bg-info col-md-4 m-auto border rounded">
@@ -27,7 +27,7 @@
             <!-- end messages loop -->
 
             {% csrf_token %}
-            {{form.as_p}}
+            {{user_login_form.as_p}}
             <center>
                 <button class="btn btn-success col-md-4 m-2 border rounded">
                     Login

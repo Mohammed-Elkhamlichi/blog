@@ -1,0 +1,37 @@
+{% extends "admins/base.html" %}
+{% load static %}
+
+{% block navbar %}
+    <!-- start include th nav bar template -->
+    {% include "admins/navbar.html" %}
+    <!-- start include th nav bar template -->
+{% endblock navbar %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <h4 class="border m-2 bg-{{message.tags}} text-center p-2">
+                {{message}} <span class="badge bg-light border-dark rounded-circel">{{articles.count}}</span>
+            </h4>
+        {% endfor %}
+    {% endif %}
+    {% for article in articles  %}
+        <div class="row bg-success m-2 border">
+            <img src="{{article.image.url}}" class="img-fluid" width="300px" alt="">
+            <p class="col-md-7 p-3">
+                {{article.content|striptags|safe|slice:":300"}} <span class="font-weight-bold">...</span>
+                <a href="{% url 'articles:detail' article.id %}" class="btn btn-info border rounded">Read More</a>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block sidebar %}
+    <!-- start include the side bar tamplate -->
+    {% include "admins/sidebar.html" %}
+    <!-- end include the side bar tamplate -->
+{% endblock sidebar %}
+
+{% block footer %}
+  
+{% endblock footer %}
