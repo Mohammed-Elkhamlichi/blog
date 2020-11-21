@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # my apps.
     'accounts',
     'articles',
+    'download_videos',
 
     # my packages:
     'crispy_forms',

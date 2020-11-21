@@ -1,7 +1,8 @@
-# my Importings:
+# my Importing:
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
+
 
 # Create your models here.
 # Category Model:
@@ -16,10 +17,11 @@ class Category(models.Model):
     class Meta:
         ordering = ['-updated']
 
+
 # Article Model:
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)
     content = RichTextField()
     image = models.ImageField(upload_to="artciles/")

@@ -68,3 +68,4 @@ def save_profile(sender, *rgs, **kwargs):
     if kwargs['created']:
         Profile.objects.create(user=kwargs['instance'])
 post_save.connect(save_profile, sender=User)
+ 

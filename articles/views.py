@@ -13,14 +13,15 @@ from .models import Article
 # Create your views here.
 latest_articles = Article.objects.all()[0:3]
 
+
 # Articles View:
 def articles(request):
     # QuerySet:
     articles = Article.objects.all()
     # Context:
     context = {
-        "articles":articles,
-        "latest_articles":latest_articles,
+        "articles": articles,
+        "latest_articles": latest_articles,
     }
     # Template:
     return render(request, 'articles/articles.html', context)
@@ -32,8 +33,8 @@ def detail(request, id):
     article = get_object_or_404(Article, id=id)
     # Context:
     context = {
-        "article":article,
-        "latest_articles":latest_articles,
+        "article": article,
+        "latest_articles": latest_articles,
     }
     # Template:
     template = loader.get_template('articles/detail.html')
@@ -56,8 +57,8 @@ def search(request):
             messages.warning(request, 'Articles Found')
     # Context:
     context = {
-        "latest_articles":latest_articles,
-        "articles":articles,
+        "latest_articles": latest_articles,
+        "articles": articles,
     }
     # Template:
     return render(request, 'articles/search.html', context)
