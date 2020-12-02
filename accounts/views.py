@@ -42,27 +42,30 @@ def contact_us(request):
 
 # User Profile View:
 def profile(request):
-    # QuerSet:
-    user_info = Profile.objects.get(user=request.user)
-    # Profile Form Validations:
-    profile_form = ProfileForm(instance=user_info)
-    if request.method == "POST":
-        profile_form = ProfileForm(request.POST, request.FILES, instance=user_info)
-        if profile_form.is_valid():
-            insert = profile_form.save(commit=False)
-            insert.save()
-            return HttpResponseRedirect('.')
-        else:
-            return HttpResponseRedirect('.')
-    # Profile Form Validations:
-    # Context
-    context = {
-        'profile_form':profile_form,
-        'user_info':user_info,
-        'latest_articles':latest_articles,
-    }
-    # Template:
-    return render(request, 'accounts/profile.html', context)
+    if request.user.is_authenticated:
+        # QuerSet:
+        user_info = Profile.objects.get(user=request.user)
+        # Profile Form Validations:
+        profile_form = ProfileForm(instance=user_info)
+        if request.method == "POST":
+            profile_form = ProfileForm(request.POST, request.FILES, instance=user_info)
+            if profile_form.is_valid():
+                insert = profile_form.save(commit=False)
+                insert.save()
+                return HttpResponseRedirect('.')
+            else:
+                return HttpResponseRedirect('.')
+        # Profile Form Validations:
+        # Context
+        context = {
+            'profile_form':profile_form,
+            'user_info':user_info,
+            'latest_articles':latest_articles,
+        }
+        # Template:
+        return render(request, 'accounts/profile.html', context)
+    else:
+        return redirect('accounts:login')
 
 # User register View:
 def register_user(request):

@@ -43,6 +43,7 @@ def detail(request, id):
 
 # Article Search View:
 def search(request):
+    title = str(request.POST.get('title'))
     # QuerySet:
     articles = None
     # Form Validations:
@@ -54,6 +55,7 @@ def search(request):
         if articles:
             messages.success(request, 'Articles Found')
         else:
+            title = request.POST.get('title')
             messages.warning(request, 'Articles Found')
     # Context:
     context = {
