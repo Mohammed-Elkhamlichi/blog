@@ -1,9 +1,8 @@
-# MEM Blog Django Project
-#### install django version 3:
-#####pip install django
-#####pip install pillow
-#####pip install 
-
-#### my apps:
-#####articles
-#####accounts
+# completed Blog Django Project
+install django version 3:
+bash
+```
+pip install django
+ip install pillow
+pip install 
+```
